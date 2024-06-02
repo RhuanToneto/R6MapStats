@@ -9,7 +9,7 @@ Você pode abrir o programa executável diretamente, sem a necessidade de ter o 
 1. Baixe o repositório [R6MapStats](https://github.com/RhuanToneto/R6MapStats/archive/refs/heads/main.zip).
 2. Extraia o conteúdo do arquivo ZIP baixado para a pasta de sua escolha.
 3. Navegue até a pasta onde você extraiu os arquivos.
-4. Execute o arquivo `R6MapStats.exe` clicando duas vezes nele.
+4. Execute o arquivo `R6MapStats.exe` dentro da pasta 'Code' clicando duas vezes nele.
 5. O programa solicitará suas credenciais de login da Ubisoft. Quando você já tiver feito login, poderá optar por usar as credenciais salvas futuramente. Suas credenciais serão armazenadas localmente de forma segura.
 6. Após fazer login, você verá as seguintes opções:
    - Adicionar jogadores: Insira as UIDs dos jogadores para adicionar à lista de jogadores a serem analisados. Os UIDs dos jogadores também serão salvos localmente para que você não precise inseri-los toda vez que iniciar o programa.
