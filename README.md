@@ -2,7 +2,7 @@
 
 Este é um programa em Python para analisar as estatísticas de mapas dos jogadores do jogo Rainbow Six Siege. O script utiliza a API siegeapi do CNDRD para obter as estatísticas dos jogadores, incluindo um desempenho geral em diferentes mapas. Ele calcula taxas de vitória e fornece estatísticas adicionais como KD (Kill/Death) e KOST (Kill/Objetive/Survive/Trade). 😎
 
-Você pode abrir o programa executável diretamente, sem a necessidade de ter o Python instalado no seu sistema. O executável inclui todas as dependências e o interpretador Python necessário para a execução do script.
+Você pode abrir o programa diretamente, sem a necessidade de ter o Python instalado no seu sistema. O executável inclui todas as dependências e o interpretador Python necessário para a execução do script.
 
 ## Como usar? 🤔
 
@@ -10,15 +10,17 @@ Você pode abrir o programa executável diretamente, sem a necessidade de ter o 
 2. Extraia o conteúdo do arquivo ZIP baixado para a pasta de sua escolha.
 3. Navegue até a pasta onde você extraiu os arquivos.
 4. Execute o arquivo `R6MapStats.exe` dentro da pasta `code` clicando duas vezes nele.
-5. O programa solicitará suas credenciais de login da Ubisoft. Quando você já tiver feito login, poderá optar por usar as credenciais salvas futuramente. Suas credenciais serão armazenadas localmente de forma segura.
-6. Após fazer login, você verá as seguintes opções:
+   - Mantenha a pasta do repositório em um local seguro. Recomendo criar um atalho para o executável na área de trabalho para facilitar o acesso. Não copie nem mova o executável diretamente para a área de trabalho. Lembre-se de que a pasta original é necessária para o 
+     armazenamento dos arquivos temporários e não deve ser excluída.
+6. O programa solicitará suas credenciais de login da Ubisoft. Quando você já tiver feito login, poderá optar por usar as credenciais salvas futuramente. Suas credenciais serão armazenadas localmente de forma segura.
+7. Após fazer login, você verá as seguintes opções:
    - Adicionar jogadores: Insira as UIDs dos jogadores para adicionar à lista de jogadores a serem analisados. Os UIDs dos jogadores também serão salvos localmente para que você não precise inseri-los toda vez que iniciar o programa.
    - É necessário adicionar e selecionar pelo menos um jogador para ser analisado, mas você também pode selecionar um esquadrão de 5 jogadores ou até mais. Quando mais de um jogador é selecionado, o programa calculará médias ponderadas das estatísticas dos jogadores,
      fornecendo insights sobre o desempenho do esquadrão em diferentes mapas.
      Para encontrar o UID de um jogador:
      1. Acesse o [Site da Ubisoft R6 Stats](https://www.ubisoft.com/en-gb/game/rainbow-six/siege/stats/summary).
      2. Faça login com suas credenciais da Ubisoft.
-     3. Após o login, o UID do jogador estará no final do link, após "summary/".
+     3. Após o login, o UID do jogador estará no final do link, após `summary/`.
    - Selecionar período de estatísticas: Escolha entre analisar estatísticas dos últimos 1, 2 ou 3 meses. Lembre-se de que a escolha do período de tempo afetará a precisão dos dados. 
      Um período de 3 meses fornece uma visão mais precisa do desempenho do jogador, enquanto períodos mais curtos podem variar mais devido à flutuação no tempo de jogo.
 
