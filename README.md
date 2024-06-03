@@ -1,4 +1,4 @@
-# R6MapStats 🖱️💻🎮
+# Analisador de Estatísticas de Mapas para Rainbow Six Siege 🖱️💻🎮
 
 Este é um programa em Python para analisar as estatísticas de mapas dos jogadores do jogo Rainbow Six Siege. O script utiliza a API siegeapi do CNDRD para obter as estatísticas dos jogadores, incluindo um desempenho geral em diferentes mapas. Ele calcula taxas de vitória e fornece estatísticas adicionais como KD (Kill/Death) e KOST (Kill/Objetive/Survive/Trade). 😎
 
