@@ -155,7 +155,7 @@ def print_ban_suggestions(map_stats):
 
         death = stats["death"]
         if death == 0:    
-            continue  # Skip maps with no deaths
+            continue  
 
         ban_score = ((stats["total_wins"] / total_matches) * (1/3) +    
                      (stats["kills"] / stats["death"]) * (1/3) +
