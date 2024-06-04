@@ -9,7 +9,7 @@ Você pode abrir o programa diretamente, sem a necessidade de ter o Python insta
 1. Baixe o repositório [R6MapStats](https://github.com/RhuanToneto/R6MapStats/archive/refs/heads/main.zip).
 2. Extraia o conteúdo do arquivo ZIP baixado para a pasta de sua escolha.
 3. Navegue até a pasta onde você extraiu os arquivos.
-4. Execute o arquivo `R6MapStats.exe` dentro da pasta `code` clicando duas vezes nele.
+4. Execute o arquivo `R6MapStats.exe` clicando duas vezes nele.
    - Mantenha a pasta do repositório em um local seguro. Recomendo criar um atalho para o executável na área de trabalho para facilitar o acesso. Não copie e nem mova o executável diretamente para a área de trabalho. Lembre-se de que a pasta original é necessária para o 
      armazenamento dos arquivos temporários e não deve ser excluída.
 6. O programa solicitará suas credenciais de login da Ubisoft. Quando você já tiver feito login, poderá optar por usar as credenciais salvas futuramente. Suas credenciais serão armazenadas localmente de forma segura.
