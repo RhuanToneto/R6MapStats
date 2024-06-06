@@ -1,6 +1,7 @@
 import os
 import asyncio
 import json
+import sys
 from collections import defaultdict
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
@@ -279,6 +280,7 @@ async def main():
             while True:
                 period_choice = input("\nEscolha o período das estatísticas: 1 Mês, 2 Meses, 3 Meses (1/2/3): ").strip()
                 if period_choice in ['1', '2', '3']:
+                    print("Processando...", flush=True)
                     break
                 else:
                     print("Opção inválida. Escolha entre 1, 2 ou 3.\n")
