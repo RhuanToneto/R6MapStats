@@ -6,6 +6,9 @@ Já se perguntou como você e/ou sua squad se saem nos diferentes mapas ranquead
 
 Quer descobrir em quais mapas sua squad parece estar sem sinergia, coordenação, entregando mais que o Sedex 📫 e começar a banir esses mapas? ⛔ Tenho a ferramenta perfeita para você!
 
+| ![BANNER](BANNER.jpg) | ![CMD](CMD.jpg) |
+|:-------------------------------------:|:-------------------------------------:|
+
 Esta é uma ferramenta em Python que analisa detalhadamente o seu desempenho em cada mapa ranqueado. Utilizando a API siegeapi do CNDRD, ela extrai as estatísticas dos jogadores e calcula taxas de vitória, KD (Kill/Death) e KOST (Kill/Objetive/Survive/Trade), dando a você uma visão de como você e/ou sua squad performam em cada mapa. 
 
 E a melhor parte? Você não precisa ser um expert em Python para usar! O programa pode ser aberto diretamente, sem a necessidade de ter o Python instalado no seu sistema. O executável já inclui todas as dependências e o interpretador necessário. Então, o que está esperando? Vamos aprofundar nessas estatísticas e elevar o seu jogo! 📈
