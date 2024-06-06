@@ -5,7 +5,6 @@ Este é um programa em Python para analisar as estatísticas de mapas dos jogado
 Você pode abrir o programa diretamente, sem a necessidade de ter o Python instalado no seu sistema. O executável inclui todas as dependências e o interpretador Python necessário para a execução do script.
 
 ## Como usar? 🤔
-
 1. Baixe o repositório [R6MapStats](https://github.com/RhuanToneto/R6MapStats/archive/refs/heads/main.zip).
 2. Extraia o conteúdo do arquivo ZIP baixado para a pasta de sua escolha.
 3. Navegue até a pasta onde você extraiu os arquivos.
@@ -94,6 +93,8 @@ ESTATÍSTICAS ADICIONAIS:
 [Repositório da API](https://github.com/CNDRD/siegeapi)
 [Documentação da API](https://cndrd.github.io/siegeapi)
 
-## Contribuindo
+# Aviso Importante
+Esta ferramenta não é afiliada ou endossada pela Ubisoft ou pela equipe de desenvolvimento do Tom Clancy's Rainbow Six Siege. É um projeto independente criado para fins educacionais e analíticos.
 
+## Contribuindo
 Se você encontrar bugs ou tiver sugestões de melhorias, sinta-se à vontade para compartilhar. Este projeto é um trabalho em andamento e estou aberto a sugestões e correções para melhorá-lo.
