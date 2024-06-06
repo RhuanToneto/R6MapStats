@@ -2,9 +2,11 @@
 
 Olá, operadores! 🖱️💻🎮
 
-Este é um programa em Python para analisar as estatísticas de mapas dos jogadores do jogo Rainbow Six Siege. O script utiliza a API siegeapi do CNDRD para obter as estatísticas dos jogadores, incluindo um desempenho geral em diferentes mapas. Ele calcula taxas de vitória e fornece estatísticas adicionais como KD (Kill/Death) e KOST (Kill/Objetive/Survive/Trade). 😎
+Já se perguntou como você e/ou sua squad se saem nos diferentes mapas ranqueados do Rainbow Six Siege? Já quis saber em quais mapas você é o verdadeiro GOAT, o próximo Nesk, e aqueles onde... você se parece mais com um bagre? 😂 Quer descobrir em quais mapas sua squad parece estar sem sinergia, coordenação, entregando mais que o Sedex 📫 e começar a banir esses mapas? ⛔ Tenho a ferramenta perfeita para você!
 
-Você pode abrir o programa diretamente, sem a necessidade de ter o Python instalado no seu sistema. O executável inclui todas as dependências e o interpretador Python necessário para a execução do script.
+Esta é uma ferramenta em Python que analisa detalhadamente o seu desempenho em cada mapa ranqueado. Utilizando a API siegeapi do CNDRD, ela extrai as estatísticas dos jogadores e calcula taxas de vitória, KD (Kill/Death) e KOST (Kill/Objetive/Survive/Trade), dando a você uma visão de como você e/ou sua squad performam em cada mapa. 
+
+E a melhor parte? Você não precisa ser um expert em Python para usar! O programa pode ser aberto diretamente, sem a necessidade de ter o Python instalado no seu sistema. O executável já inclui todas as dependências e o interpretador necessário. Então, o que está esperando? Vamos aprofundar nessas estatísticas e elevar o seu jogo! 📈
 
 ## Como usar? 🤔
 1. Baixe o repositório [R6MapStats](https://github.com/RhuanToneto/R6MapStats/archive/refs/heads/main.zip).
@@ -26,6 +28,8 @@ Você pode abrir o programa diretamente, sem a necessidade de ter o Python insta
      Um período de 3 meses fornece uma visão mais precisa do desempenho do jogador, enquanto períodos mais curtos podem variar mais devido à flutuação no tempo de jogo.
 
 E pronto! ✅
+
+Espero que isso ajude! Boa sorte e bom jogo! GL HF ✌️
 
 ## Exemplo de Uso
 
