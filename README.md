@@ -2,7 +2,9 @@
 
 Olá, operadores! 🖱️💻🎮
 
-Já se perguntou como você e/ou sua squad se saem nos diferentes mapas ranqueados do Rainbow Six Siege? Já quis saber em quais mapas você é o verdadeiro GOAT, o próximo Nesk, e aqueles onde... você se parece mais com um bagre? 😂 Quer descobrir em quais mapas sua squad parece estar sem sinergia, coordenação, entregando mais que o Sedex 📫 e começar a banir esses mapas? ⛔ Tenho a ferramenta perfeita para você!
+Já se perguntou como você e/ou sua squad se saem nos diferentes mapas ranqueados do Rainbow Six Siege? Já quis saber em quais mapas você é o verdadeiro GOAT, o próximo Nesk, e aqueles onde... você se parece mais com um bagre? 😂 
+
+Quer descobrir em quais mapas sua squad parece estar sem sinergia, coordenação, entregando mais que o Sedex 📫 e começar a banir esses mapas? ⛔ Tenho a ferramenta perfeita para você!
 
 Esta é uma ferramenta em Python que analisa detalhadamente o seu desempenho em cada mapa ranqueado. Utilizando a API siegeapi do CNDRD, ela extrai as estatísticas dos jogadores e calcula taxas de vitória, KD (Kill/Death) e KOST (Kill/Objetive/Survive/Trade), dando a você uma visão de como você e/ou sua squad performam em cada mapa. 
 
