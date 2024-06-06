@@ -198,7 +198,7 @@ async def main():
     try:
         players_loaded = bool(players)  
 
-        while True:
+        while True: # I WAS THERE WHEN RAINBOW BEGAN. I’LL BE THERE WHEN IT ENDS.
             num_players = len(players)
             all_uids = {player["uid"]: player["name"] for player in players}
 
