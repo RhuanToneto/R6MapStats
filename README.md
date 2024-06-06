@@ -1,4 +1,4 @@
-## Analisador de Estatísticas de Mapas para Rainbow Six Siege
+## Analisador de Estatísticas para Rainbow Six Siege
 
 Olá, operadores! 🖱️💻🎮
 
