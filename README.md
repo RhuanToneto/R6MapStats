@@ -2,7 +2,7 @@
 
 Olá, operadores! 🖱️💻🎮
 
-Já se perguntou como você e/ou sua squad se saem nos diferentes mapas ranqueados do Rainbow Six Siege? Já quis saber em quais mapas você é o verdadeiro GOAT, o próximo Nesk, e aqueles onde... você se parece mais com um bagre? 😂 
+Já se perguntou como você e/ou sua squad se saem nos diferentes mapas ranqueados do Rainbow Six Siege? Já quis saber em quais mapas é o verdadeiro GOAT, o próximo Nesk, e aqueles onde... se parece mais com um bagre? 😂 
 
 Quer descobrir em quais mapas sua squad parece estar sem sinergia, coordenação, entregando mais que o Sedex 📫 e começar a banir esses mapas? ⛔ Tenho a ferramenta perfeita para você!
 
