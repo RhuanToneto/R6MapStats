@@ -33,6 +33,8 @@ E pronto! ✅
 
 Espero que isso ajude! Boa sorte e bom jogo! GL HF ✌️
 
+"Prepare-se com antecedência e você nunca será pego de surpresa." - Sam "Zero" Fisher
+
 ## Exemplo de Uso
 
 ```
