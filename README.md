@@ -14,7 +14,7 @@ Esta é uma ferramenta em Python que analisa detalhadamente o seu desempenho em 
 E a melhor parte? Você não precisa ser um expert em Python para usar! O programa pode ser aberto diretamente, sem a necessidade de ter o Python instalado no seu sistema. O executável já inclui todas as dependências e o interpretador necessário. Então, o que está esperando? Vamos aprofundar nessas estatísticas e elevar o seu jogo! 📈
 
 ## Como usar? 🤔
-1. Baixe o repositório [R6MapStats](https://github.com/RhuanToneto/R6MapStats/releases/download/v1.0.0/Windows.zip).
+1. Baixe clicando aqui [R6MapStats](https://github.com/RhuanToneto/R6MapStats/releases/download/v1.0.0/Windows.zip).
 2. Extraia o conteúdo do arquivo ZIP baixado para a pasta de sua escolha.
 3. Navegue até a pasta onde você extraiu os arquivos.
 4. Execute o arquivo `R6MapStats.exe` clicando duas vezes nele.
