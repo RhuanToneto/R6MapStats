@@ -2,6 +2,10 @@ import os
 import asyncio
 import json
 import sys
+import base64
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives import padding
+from cryptography.hazmat.backends import default_backend
 from collections import defaultdict
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
@@ -15,32 +19,57 @@ PLAYERS_CACHE_PATH = os.path.join(CACHE_DIRECTORY, "players.json")
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def generate_key():
+    return os.urandom(32)
+
+def save_key(key):
+    with open(os.path.join(CACHE_DIRECTORY, "secret.key"), "wb") as key_file:
+        key_file.write(key)
+
+def load_key():
+    with open(os.path.join(CACHE_DIRECTORY, "secret.key"), "rb") as key_file:
+        return key_file.read()
+
+if not os.path.exists(os.path.join(CACHE_DIRECTORY, "secret.key")):
+    key = generate_key()
+    os.makedirs(CACHE_DIRECTORY, exist_ok=True)
+    save_key(key)
+else:
+    key = load_key()
+
+def encrypt(data, key):
+    iv = os.urandom(16)
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(data) + padder.finalize()
+    encrypted_data = encryptor.update(padded_data) + encryptor.finalize()
+    return base64.b64encode(iv + encrypted_data).decode('utf-8')
+
+def decrypt(data, key):
+    data = base64.b64decode(data)
+    iv = data[:16]
+    encrypted_data = data[16:]
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
+    decryptor = cipher.decryptor()
+    unpadder = padding.PKCS7(128).unpadder()
+    decrypted_padded_data = decryptor.update(encrypted_data) + decryptor.finalize()
+    decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
+    return decrypted_data
+
 async def save_credentials(email, password):
     credentials = {"email": email, "password": password}
+    encrypted_credentials = encrypt(json.dumps(credentials).encode(), key)
     with open(CREDENTIALS_CACHE_PATH, "w") as file:
-        json.dump(credentials, file)
+        file.write(encrypted_credentials)
 
 async def load_credentials():
     if os.path.exists(CREDENTIALS_CACHE_PATH):
         with open(CREDENTIALS_CACHE_PATH, "r") as file:
-            return json.load(file)
+            encrypted_credentials = file.read()
+            decrypted_credentials = decrypt(encrypted_credentials, key)
+            return json.loads(decrypted_credentials)
     return None
-
-async def save_players(players):
-    with open(PLAYERS_CACHE_PATH, "w") as file:
-        for player in players:
-            file.write(json.dumps(player) + '\n')
-
-async def load_players():
-    players = []
-    try:
-        if os.path.exists(PLAYERS_CACHE_PATH):
-            with open(PLAYERS_CACHE_PATH, "r") as file:
-                for line in file:
-                    players.append(json.loads(line.strip()))
-    except Exception as e:
-        print(f"Erro ao carregar jogadores: {e}")
-    return players
 
 async def login():
     while True:
@@ -79,6 +108,22 @@ async def login():
                 print("\nFalha no login: Senha incorreta!\n")
             else:
                 print(f"\nFalha no login: {e}\n")
+
+async def save_players(players):
+    with open(PLAYERS_CACHE_PATH, "w") as file:
+        for player in players:
+            file.write(json.dumps(player) + '\n')
+
+async def load_players():
+    players = []
+    try:
+        if os.path.exists(PLAYERS_CACHE_PATH):
+            with open(PLAYERS_CACHE_PATH, "r") as file:
+                for line in file:
+                    players.append(json.loads(line.strip()))
+    except Exception as e:
+        print(f"Erro ao carregar jogadores: {e}")
+    return players
 
 async def get_player_name(auth: Auth, uid: str) -> Optional[str]:
     try:
@@ -142,36 +187,8 @@ def print_map_stats(sorted_map_stats):
             print(f"{map_name:>20} : {win_rate_str}")
     print()
 
-def print_ban_suggestions(map_stats):
-    print("\nPONTUAÇÕES DE DESEMPENHOS:")
-
-    ban_suggestions = []
-
-    for map_name, stats in map_stats.items():
-        map_name = map_name.replace(" V2", "")
-        total_matches = stats["total_matches"]
-        if total_matches == 0:
-            print(f"{map_name:>20} : Dados Insuficientes")
-            continue
-
-        death = stats["death"]
-        if death == 0:    
-            continue  
-
-        ban_score = ((stats["total_wins"] / total_matches) * (1/3) +    
-                     (stats["kills"] / stats["death"]) * (1/3) +
-                     (stats["rounds_with_kost"]) * (1/3))
-        ban_suggestions.append((map_name, ban_score))      
-
-    sorted_ban_suggestions = sorted(ban_suggestions, key=lambda x: x[1], reverse=True)  
-
-    for map_name, ban_score in sorted_ban_suggestions:    
-        print(f"{map_name:>20} : {ban_score:.2f}") 
-
-    print()        
-
 def print_additional_stats(map_stats):
-    print("\nESTATÍSTICAS ADICIONAIS:")
+    print("\nESTATÍSTICAS ATAQUE E DEFESA:")
     map_kd = {}
     for map_name, stats in map_stats.items():
         map_name = map_name.replace(" V2", "") 
@@ -185,6 +202,71 @@ def print_additional_stats(map_stats):
     for map_name, (kd, rounds_with_kost) in sorted_maps:
         print(f"{map_name:>20} : KD: {kd:.2f}, KOST: {rounds_with_kost}%")
     print()
+
+def print_attacker_stats(map_stats_attacker):
+    print("\nESTATÍSTICAS ATAQUE:")
+    map_kd = {}
+    for map_name, stats in map_stats_attacker.items():
+        map_name = map_name.replace(" V2", "") 
+        if stats['death'] != 0: 
+            kd = round(stats['kills'] / stats['death'], 2)
+            rounds_with_kost = float(f"{stats['rounds_with_kost']:.1f}")
+            if rounds_with_kost.is_integer():
+                rounds_with_kost = int(rounds_with_kost)
+            map_kd[map_name] = (kd, rounds_with_kost)
+    sorted_maps = sorted(map_kd.items(), key=lambda x: x[1][0], reverse=True)
+    for map_name, (kd, rounds_with_kost) in sorted_maps:
+        print(f"{map_name:>20} : KD: {kd:.2f}, KOST: {rounds_with_kost}%")
+    print()
+
+def print_defender_stats(map_stats_defender):
+    print("\nESTATÍSTICAS DEFESA:")
+    map_kd = {}
+    for map_name, stats in map_stats_defender.items():
+        map_name = map_name.replace(" V2", "") 
+        if stats['death'] != 0: 
+            kd = round(stats['kills'] / stats['death'], 2)
+            rounds_with_kost = float(f"{stats['rounds_with_kost']:.1f}")
+            if rounds_with_kost.is_integer():
+                rounds_with_kost = int(rounds_with_kost)
+            map_kd[map_name] = (kd, rounds_with_kost)
+    sorted_maps = sorted(map_kd.items(), key=lambda x: x[1][0], reverse=True)
+    for map_name, (kd, rounds_with_kost) in sorted_maps:
+        print(f"{map_name:>20} : KD: {kd:.2f}, KOST: {rounds_with_kost}%")
+    print()        
+
+def print_rating_stats(map_stats):
+    print("\nDESEMPENHO GERAL:")
+    
+    stat_weights = {
+        "rounds_with_an_ace": 25,
+        "rounds_with_clutch": 25,
+        "rounds_with_multi_kill": 20,
+        "kills_per_round": 15,
+        "rounds_with_kost": 9,
+        "rounds_with_opening_kill": 6
+    }
+
+    performances = []
+
+    for map_name, stats in map_stats.items():
+        total_performance = 0
+        
+        for stat_name, value in stats.items():
+            if stat_name in stat_weights:
+                total_performance += value * stat_weights[stat_name]
+        
+        performances.append((map_name, total_performance))
+    
+    performances.sort(key=lambda x: x[1], reverse=True)
+
+    max_score = max(performances, key=lambda x: x[1])[1]
+    min_score = min(performances, key=lambda x: x[1])[1]
+
+    for map_name, score in performances:
+        normalized_score = ((score - min_score) / (max_score - min_score)) * 100
+        map_name = map_name.replace(" V2", "")
+        print(f"{map_name:>20} : {normalized_score:.1f}")
 
 async def main():
     if not os.path.exists(CACHE_DIRECTORY):
@@ -298,7 +380,21 @@ async def main():
             start_date_formatted = start_date_obj.strftime("%d/%m/%Y")
             end_date_formatted = end_date_obj.strftime("%d/%m/%Y")
 
-            map_stats = defaultdict(lambda: {"total_matches": 0, "total_wins": 0, "kills": 0, "death": 0, "rounds_with_kost": 0})
+            map_stats = defaultdict(lambda: {
+                "total_matches": 0,
+                "total_wins": 0,
+                "kills": 0,
+                "death": 0,
+                "rounds_with_kost": 0,
+                "rounds_with_an_ace": 0,  
+                "rounds_with_multi_kill": 0,
+                "rounds_with_clutch": 0,
+                "rounds_with_opening_kill": 0,
+                "kills_per_round": 0,
+            })
+
+            map_stats_attacker = defaultdict(lambda: {"total_matches": 0, "total_wins": 0, "kills": 0, "death": 0, "rounds_with_kost": 0})
+            map_stats_defender = defaultdict(lambda: {"total_matches": 0, "total_wins": 0, "kills": 0, "death": 0, "rounds_with_kost": 0})
 
             for player_name in selected_players:
                 player_data = next((p for p in players if p["name"] == player_name), None)
@@ -314,11 +410,40 @@ async def main():
                         map_stats[map.map_name]["kills"] += map.kills
                         map_stats[map.map_name]["death"] += map.death
                         map_stats[map.map_name]["rounds_with_kost"] += map.rounds_with_kost
+                        map_stats[map.map_name]["rounds_with_an_ace"] += map.rounds_with_an_ace 
+                        map_stats[map.map_name]["rounds_with_multi_kill"] += map.rounds_with_multi_kill
+                        map_stats[map.map_name]["rounds_with_clutch"] += map.rounds_with_clutch
+                        map_stats[map.map_name]["rounds_with_opening_kill"] += map.rounds_with_opening_kill
+                        map_stats[map.map_name]["kills_per_round"] += map.kills_per_round
+
+                    for map in player.maps.ranked.attacker:
+                        map_stats_attacker[map.map_name]["total_matches"] += map.matches_played
+                        map_stats_attacker[map.map_name]["total_wins"] += map.matches_won
+                        map_stats_attacker[map.map_name]["kills"] += map.kills
+                        map_stats_attacker[map.map_name]["death"] += map.death
+                        map_stats_attacker[map.map_name]["rounds_with_kost"] += map.rounds_with_kost
+
+                    for map in player.maps.ranked.defender:
+                        map_stats_defender[map.map_name]["total_matches"] += map.matches_played
+                        map_stats_defender[map.map_name]["total_wins"] += map.matches_won
+                        map_stats_defender[map.map_name]["kills"] += map.kills
+                        map_stats_defender[map.map_name]["death"] += map.death
+                        map_stats_defender[map.map_name]["rounds_with_kost"] += map.rounds_with_kost                           
 
             num_selected_players = len(selected_players)
             for map_name, stats in map_stats.items():       
                 for key in stats:
                     stats[key] /= num_selected_players 
+
+            num_selected_players = len(selected_players)
+            for map_name, stats in map_stats_attacker.items():       
+                for key in stats:
+                    stats[key] /= num_selected_players
+
+            num_selected_players = len(selected_players)
+            for map_name, stats in map_stats_defender.items():       
+                for key in stats:
+                    stats[key] /= num_selected_players
 
             for player_name in selected_players:
                 player_data = next((p for p in players if p["name"] == player_name), None)
@@ -335,17 +460,39 @@ async def main():
                                 map_stats[map.map_name]["total_wins"] -= map.matches_won / num_selected_players
                                 map_stats[map.map_name]["kills"] -= map.kills / num_selected_players
                                 map_stats[map.map_name]["death"] -= map.death / num_selected_players
-                                map_stats[map.map_name]["rounds_with_kost"] -= map.rounds_with_kost / num_selected_players                           
+                                map_stats[map.map_name]["rounds_with_kost"] -= map.rounds_with_kost / num_selected_players       
+
+                    for map in player.maps.ranked.attacker:
+                        if hasattr(map, 'matches_played') and hasattr(map, 'matches_won') and hasattr(map, 'kills') and hasattr(map, 'death') and hasattr(map, 'rounds_with_kost'):
+                            if map.matches_played == 0 or map.matches_won == 0 or map.matches_won == map.matches_played:
+                                map_stats_attacker[map.map_name]["total_matches"] -= map.matches_played / num_selected_players
+                                map_stats_attacker[map.map_name]["total_wins"] -= map.matches_won / num_selected_players
+                                map_stats_attacker[map.map_name]["kills"] -= map.kills / num_selected_players
+                                map_stats_attacker[map.map_name]["death"] -= map.death / num_selected_players
+                                map_stats_attacker[map.map_name]["rounds_with_kost"] -= map.rounds_with_kost / num_selected_players
+
+                    for map in player.maps.ranked.defender:
+                        if hasattr(map, 'matches_played') and hasattr(map, 'matches_won') and hasattr(map, 'kills') and hasattr(map, 'death') and hasattr(map, 'rounds_with_kost'):
+                            if map.matches_played == 0 or map.matches_won == 0 or map.matches_won == map.matches_played:
+                                map_stats_defender[map.map_name]["total_matches"] -= map.matches_played / num_selected_players
+                                map_stats_defender[map.map_name]["total_wins"] -= map.matches_won / num_selected_players
+                                map_stats_defender[map.map_name]["kills"] -= map.kills / num_selected_players
+                                map_stats_defender[map.map_name]["death"] -= map.death / num_selected_players
+                                map_stats_defender[map.map_name]["rounds_with_kost"] -= map.rounds_with_kost / num_selected_players                                            
 
             print_selected_squad(selected_players, start_date, end_date, start_date_formatted, end_date_formatted)
 
-            print_ban_suggestions(map_stats)
-
-            sorted_map_stats = sorted(map_stats.items(), key=lambda x: (x[1]["total_wins"] / x[1]["total_matches"]) if x[1]["total_matches"] != 0 else 0, reverse=True)
+            sorted_map_stats = sorted(map_stats.items(), key=lambda x: (x[1]["total_wins"] / x[1]["total_matches"]) if x[1]["total_matches"] != 0 else 0, reverse=True)      
 
             print_map_stats(sorted_map_stats)
-
+            
             print_additional_stats(map_stats)
+            
+            print_attacker_stats(map_stats_attacker)
+            
+            print_defender_stats(map_stats_defender)
+
+            print_rating_stats(map_stats)
 
             while True:
                 resposta = input("\nDeseja repetir? (s/n): ")
