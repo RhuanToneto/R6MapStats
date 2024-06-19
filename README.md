@@ -44,62 +44,99 @@ Espero que isso ajude! Boa sorte e bom jogo! GL HF ✌️
 ESQUADRÃO: JOGADOR 1, JOGADOR 2, JOGADOR 3, JOGADOR 4, JOGADOR 5
 INTERVALO DE DADOS: DATA - DATA (Período: X Meses)
 
-
-PONTUAÇÕES DE DESEMPENHOS:
-                LAIR : 22.78
-          THEME PARK : 22.55
-           COASTLINE : 21.90
-              OREGON : 21.71
-          CLUB HOUSE : 21.66
-                BANK : 21.41
-           CONSULATE : 21.27
-              CHALET : 21.13
-          SKYSCRAPER : 21.07
-               VILLA : 20.76
-     NIGHTHAVEN LABS : 20.59
-             OUTBACK : 20.22
-    KAFE DOSTOYEVSKY : 20.21
-              BORDER : 20.21
-               KANAL : 18.23
-      EMERALD PLAINS : 4.28
-
-
 TAXAS DE VITÓRIAS:
-    KAFE DOSTOYEVSKY : 56.8%
-          THEME PARK : 55.5%
-          CLUB HOUSE : 54.3%
-                LAIR : 54.1%
-              OREGON : 53.6%
-                BANK : 53.3%
-           COASTLINE : 51.6%
-               VILLA : 51.4%
-              BORDER : 51.4%
-      EMERALD PLAINS : 50.0%
-           CONSULATE : 47.5%
-              CHALET : 45.6%
-          SKYSCRAPER : 40.3%
-     NIGHTHAVEN LABS : 39.3%
-             OUTBACK : 36.7%
-               KANAL : 16.1%
+      EMERALD PLAINS : 66.7%
+           COASTLINE : 63.5%
+          CLUB HOUSE : 55.9%
+    KAFE DOSTOYEVSKY : 55.8%
+                LAIR : 54.5%
+          THEME PARK : 53.4%
+                BANK : 53.4%
+              BORDER : 51.0%
+           CONSULATE : 48.4%
+              CHALET : 46.8%
+              OREGON : 46.2%
+               VILLA : 44.6%
+     NIGHTHAVEN LABS : 41.6%
+             OUTBACK : 38.9%
+               KANAL : 26.8%
+          SKYSCRAPER : 26.4%
 
 
-ESTATÍSTICAS ADICIONAIS:
-                LAIR : KD: 1.21, KOST: 66.6%
-          THEME PARK : KD: 1.14, KOST: 65.9%
-                BANK : KD: 1.14, KOST: 62.6%
-              OREGON : KD: 1.13, KOST: 63.5%
-          CLUB HOUSE : KD: 1.12, KOST: 63.3%
-           COASTLINE : KD: 1.08, KOST: 64.1%
-               VILLA : KD: 1.06, KOST: 60.7%
-           CONSULATE : KD: 1.06, KOST: 62.3%
-          SKYSCRAPER : KD: 1.04, KOST: 61.8%
-              BORDER : KD: 1.03, KOST: 59.1%
-     NIGHTHAVEN LABS : KD: 1.01, KOST: 60.4%
-    KAFE DOSTOYEVSKY : KD: 1.00, KOST: 59%
-              CHALET : KD: 0.99, KOST: 61.9%
-             OUTBACK : KD: 0.99, KOST: 59.3%
-      EMERALD PLAINS : KD: 0.91, KOST: 11.4%
-               KANAL : KD: 0.78, KOST: 53.8%
+ESTATÍSTICAS ATAQUE E DEFESA:
+                LAIR : KD: 1.49, KOST: 53.5%
+               VILLA : KD: 1.26, KOST: 64.6%
+                BANK : KD: 1.20, KOST: 63.9%
+           COASTLINE : KD: 1.16, KOST: 65.5%
+          CLUB HOUSE : KD: 1.16, KOST: 63.4%
+    KAFE DOSTOYEVSKY : KD: 1.13, KOST: 62.8%
+          THEME PARK : KD: 1.12, KOST: 67.6%
+           CONSULATE : KD: 1.11, KOST: 65.5%
+              OREGON : KD: 1.08, KOST: 61.6%
+             OUTBACK : KD: 1.08, KOST: 64.7%
+              CHALET : KD: 1.05, KOST: 64.7%
+     NIGHTHAVEN LABS : KD: 1.05, KOST: 61.9%
+              BORDER : KD: 1.04, KOST: 58.1%
+               KANAL : KD: 0.94, KOST: 56.4%
+          SKYSCRAPER : KD: 0.90, KOST: 56.6%
+      EMERALD PLAINS : KD: 0.88, KOST: 15.2%
+
+
+ESTATÍSTICAS ATAQUE:
+                LAIR : KD: 1.43, KOST: 51.1%
+                BANK : KD: 1.32, KOST: 65.4%
+           COASTLINE : KD: 1.26, KOST: 66.7%
+               VILLA : KD: 1.14, KOST: 60.8%
+              BORDER : KD: 1.04, KOST: 57.6%
+    KAFE DOSTOYEVSKY : KD: 1.04, KOST: 60.2%
+             OUTBACK : KD: 1.01, KOST: 60.8%
+      EMERALD PLAINS : KD: 1.00, KOST: 14.6%
+              CHALET : KD: 0.98, KOST: 63.1%
+          THEME PARK : KD: 0.97, KOST: 67.3%
+     NIGHTHAVEN LABS : KD: 0.95, KOST: 59.2%
+          CLUB HOUSE : KD: 0.91, KOST: 56.8%
+              OREGON : KD: 0.88, KOST: 56.5%
+           CONSULATE : KD: 0.82, KOST: 61.4%
+          SKYSCRAPER : KD: 0.78, KOST: 53.1%
+               KANAL : KD: 0.61, KOST: 46.7%
+
+
+ESTATÍSTICAS DEFESA:
+                LAIR : KD: 1.58, KOST: 56.3%
+           CONSULATE : KD: 1.50, KOST: 69.9%
+          CLUB HOUSE : KD: 1.46, KOST: 70%
+               VILLA : KD: 1.41, KOST: 68.8%
+              OREGON : KD: 1.34, KOST: 67.1%
+               KANAL : KD: 1.31, KOST: 65.3%
+          THEME PARK : KD: 1.29, KOST: 67.9%
+    KAFE DOSTOYEVSKY : KD: 1.25, KOST: 65.8%
+     NIGHTHAVEN LABS : KD: 1.17, KOST: 64.8%
+             OUTBACK : KD: 1.16, KOST: 68.5%
+              CHALET : KD: 1.12, KOST: 66.6%
+                BANK : KD: 1.09, KOST: 62.4%
+           COASTLINE : KD: 1.06, KOST: 64.7%
+              BORDER : KD: 1.03, KOST: 58.4%
+          SKYSCRAPER : KD: 1.02, KOST: 59.5%
+      EMERALD PLAINS : KD: 0.71, KOST: 15.9%
+
+
+DESEMPENHO GERAL:
+                LAIR : 100.0
+               VILLA : 92.0
+           CONSULATE : 82.3
+     NIGHTHAVEN LABS : 79.0
+           COASTLINE : 77.8
+              OREGON : 77.2
+          CLUB HOUSE : 76.1
+          THEME PARK : 75.1
+              CHALET : 74.1
+                BANK : 73.5
+    KAFE DOSTOYEVSKY : 72.2
+             OUTBACK : 71.5
+              BORDER : 70.4
+               KANAL : 61.5
+          SKYSCRAPER : 59.4
+      EMERALD PLAINS : 0.0
 ```
 
 ## Direitos Autorais (c) 2021-2024 CNDRD
